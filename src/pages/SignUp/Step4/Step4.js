@@ -1,9 +1,8 @@
 import React from 'react';
-import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import Header from 'components/Header/Header';
 
-export default function Step4({ setStep }) {
+export default function Step4({ setStep, formData }) {
   return (
     <div>
       <Header

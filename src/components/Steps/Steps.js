@@ -1,5 +1,5 @@
 import React, { Children, cloneElement } from 'react';
-import './Step.css';
+import './Steps.css';
 
 // check for last child and then remove the connecting line
 
@@ -36,9 +36,11 @@ export default function Steps({ currentStep, setStep, ...props }) {
 
 export function Step({ title, index, isFirst, isLast, isCurrent }) {
   return (
-    <>
+    <div className="step-grid">
       {!isFirst && (
-        <div className={`prev-line ${isCurrent ? 'color' : 'plain'}`}></div>
+        <div
+          className={`prev-line ${isCurrent ? 'color' : 'plain-connect'}`}
+        ></div>
       )}
       <div
         id={index + 1}
@@ -47,8 +49,10 @@ export function Step({ title, index, isFirst, isLast, isCurrent }) {
         {title}
       </div>
       {!isLast && (
-        <div className={`next-line ${isCurrent ? 'color' : 'plain'}`}></div>
+        <div
+          className={`next-line ${isCurrent ? 'color' : 'plain-connect'}`}
+        ></div>
       )}
-    </>
+    </div>
   );
 }

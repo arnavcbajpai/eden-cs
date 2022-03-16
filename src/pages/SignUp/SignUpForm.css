@@ -5,3 +5,7 @@
   margin-right: auto;
   justify-content: center;
 }
+
+.header-logo {
+  margin: 65px auto 65px;
+}

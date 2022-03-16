@@ -1,9 +1,9 @@
-import React from 'react'
-import Input from 'components/Input/Input'
-import Button from 'components/Button/Button'
-import Header from 'components/Header/Header'
+import React from 'react';
+import Input from 'components/Input/Input';
+import Button from 'components/Button/Button';
+import Header from 'components/Header/Header';
 
-export default function Step3({ currentStep, nextStep }) {
+export default function Step3({ nextStep, onChange }) {
   return (
     <div>
       <Header
@@ -11,10 +11,9 @@ export default function Step3({ currentStep, nextStep }) {
         subheading="We'll streamline your process accordingly"
       />
       <section>
-        <Input label="Full Name" name="fullName" />
-        <Input label="Display Name" name="displayName" />
+        <Input onChange={onChange} label="Use Mode" name="useMode" />
         <Button label="Continue" onClick={nextStep} />
       </section>
     </div>
-  )
+  );
 }
