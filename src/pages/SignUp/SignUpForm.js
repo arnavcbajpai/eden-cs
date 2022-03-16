@@ -7,6 +7,9 @@ import Step4 from 'pages/SignUp/Step4/Step4';
 import edenLogo from 'assets/edeniconsmall.png';
 import './SignUpForm.css';
 
+const nameRegex =
+  /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+
 export default function SignUpForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -16,9 +19,10 @@ export default function SignUpForm() {
     workspaceURL: '',
     useMode: '',
   });
+  const [validFormStep, setValidFormStep] = useState(false);
 
   const nextStep = () => {
-    setCurrentStep((prev) => prev + 1);
+    if (!validFormStep) setCurrentStep((prev) => prev + 1);
   };
 
   const setStep = (step) => {
@@ -27,31 +31,50 @@ export default function SignUpForm() {
 
   const handleFormData = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    let validValue = false;
+    console.log(nameRegex.test(value));
+    if (
+      name === 'fullName' ||
+      name === 'displayName' ||
+      name === 'workspaceName'
+    ) {
+      if (nameRegex.test(value)) validValue = true;
+      else setValidFormStep(false);
+    }
+    if (validValue)
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
   };
+
+  useEffect(() => console.log(formData), [formData]);
+
+  const formStepArray = [
+    {
+      title: '1',
+      component: <Step1 onChange={handleFormData} nextStep={nextStep} />,
+    },
+    {
+      title: '2',
+      component: <Step2 onChange={handleFormData} nextStep={nextStep} />,
+    },
+    {
+      title: '3',
+      component: <Step3 onChange={handleFormData} nextStep={nextStep} />,
+    },
+    { title: '4', component: <Step4 formData={formData} setStep={setStep} /> },
+  ];
 
   return (
     <div className="signup-container">
       <img className="header-logo" src={edenLogo} width="25%" alt="eden_logo" />
       <Steps setStep={setStep} currentStep={currentStep}>
-        <Step title="1" />
-        <Step title="2" />
-        <Step title="3" />
-        <Step title="4" />
+        {formStepArray.map((formStep, index) => (
+          <Step key={index} title={formStep.title} />
+        ))}
       </Steps>
-      {currentStep === 1 && (
-        <Step1 onChange={handleFormData} nextStep={nextStep} />
-      )}
-      {currentStep === 2 && (
-        <Step2 onChange={handleFormData} nextStep={nextStep} />
-      )}
-      {currentStep === 3 && (
-        <Step3 onChange={handleFormData} nextStep={nextStep} />
-      )}
-      {currentStep === 4 && <Step4 formData={formData} setStep={setStep} />}
+      {formStepArray[currentStep - 1].component}
     </div>
   );
 }

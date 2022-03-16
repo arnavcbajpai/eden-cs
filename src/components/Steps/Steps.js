@@ -1,8 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 import './Steps.css';
 
-// check for last child and then remove the connecting line
-
 export default function Steps({ currentStep, setStep, ...props }) {
   const arrayChildren = Children.toArray(props.children);
   return (
