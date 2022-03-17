@@ -11,14 +11,45 @@
   margin-bottom: 10px;
 }
 
-.input {
+.note {
+  margin-left: 5px;
+  opacity: 0.5;
+}
+
+.input-box {
+  display: flex;
   width: 100%;
+  align-items: center;
+  overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 10px;
+  font-size: 14px;
+  height: 50px;
+}
+
+.prefix {
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 500;
+  color: #999;
+  height: 100%;
+  height: 50px;
+  border-right: 1px solid lightgray;
+}
+
+.input {
+  width: 100%;
   height: 50px;
   padding-left: 15px;
+  border: none;
   box-sizing: border-box;
-  font-size: 14px;
+}
+
+.error {
+  border-color: red;
 }
 
 ::placeholder {
