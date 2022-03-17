@@ -48,8 +48,12 @@
   box-sizing: border-box;
 }
 
+input:focus .error {
+  border: 1px solid red;
+}
+
 .error {
-  border-color: red;
+  border: 1px solid red;
 }
 
 ::placeholder {

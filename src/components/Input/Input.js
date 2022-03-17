@@ -23,7 +23,9 @@ export default function Input({
       <div className="input-box">
         {prefix && <p className="prefix">{prefix}</p>}
         <input
-          className={`input ${className} ${error && 'error'}`}
+          className={`input ${className ? className : ''} ${
+            error ? 'error' : ''
+          }`}
           id={name}
           name={name}
           value={value}

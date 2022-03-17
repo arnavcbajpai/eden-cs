@@ -12,6 +12,7 @@
 
 .step-grid {
 }
+
 .step-number {
   display: inline-flex;
   justify-content: center;
@@ -20,6 +21,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 
 .plain-step {
@@ -34,7 +36,6 @@
   color: gray;
   height: 2px;
   width: 35px;
-  min-width: 15px;
 }
 
 .next-line {
@@ -45,7 +46,17 @@
   color: gray;
   height: 2px;
   width: 35px;
-  min-width: 15px;
+}
+
+@media (max-width: 768px) {
+  .prev-line {
+    min-width: 15px;
+    width: auto;
+  }
+  .next-line {
+    min-width: 15px;
+    width: auto;
+  }
 }
 
 .color {

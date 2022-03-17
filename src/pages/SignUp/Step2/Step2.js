@@ -5,7 +5,7 @@ import Header from 'components/Header/Header';
 
 export default function Step2({ nextStep, onChange, formData }) {
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form>
       <Header
         heading="Let's set up a home for all your work"
         subheading="You can always create another workspace later."

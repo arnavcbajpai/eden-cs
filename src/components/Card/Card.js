@@ -12,7 +12,6 @@ export default function Card({
   id,
   ...props
 }) {
-  console.log(isActive);
   return (
     <div
       {...props}

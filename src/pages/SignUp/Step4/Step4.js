@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'components/Button/Button';
 import Header from 'components/Header/Header';
 
-export default function Step4({ formData }) {
+export default function Step4({ submitFormData }) {
   return (
     <div>
       <Header
@@ -12,8 +12,8 @@ export default function Step4({ formData }) {
       <Button
         label="Create Workspace"
         onClick={() => {
-          console.log('Form data in final step =>', formData);
-          alert('User journey completed, data: ');
+          alert('User journey completed, check console for values');
+          submitFormData();
         }}
       />
     </div>

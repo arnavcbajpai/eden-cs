@@ -6,7 +6,7 @@ import './Step1.css';
 
 export default function Step1({ nextStep, onChange, formData }) {
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form>
       <Header
         heading="Welcome! First things first..."
         subheading="You can always change them later."

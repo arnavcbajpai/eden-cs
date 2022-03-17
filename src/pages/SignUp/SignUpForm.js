@@ -7,7 +7,7 @@ import Step4 from 'pages/SignUp/Step4/Step4';
 import edenLogo from 'assets/edeniconsmall.png';
 import './SignUpForm.css';
 
-const nameRegex = /^[A-Z][a-zA-Z '.-]*[A-Za-z][^-]$/;
+const nameRegex = /^([a-zA-Z ]){2,30}$/;
 
 export default function SignUpForm() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -15,7 +15,7 @@ export default function SignUpForm() {
     fullName: { value: '', hasError: false },
     displayName: { value: '', hasError: false },
     workspaceName: { value: '', hasError: false },
-    workspaceURL: { value: 'www.eden.com/', hasError: false },
+    workspaceURL: { value: '', hasError: false },
     useMode: { value: 'single', hasError: false },
   });
 
@@ -33,16 +33,14 @@ export default function SignUpForm() {
   const handleFormData = (e) => {
     const { name, value } = e.target;
     let validValue = false;
-    console.log(name, value);
 
     if (value) {
-      console.log(value, nameRegex.test(value));
       if (
         name === 'fullName' ||
         name === 'displayName' ||
         name === 'workspaceName'
       ) {
-        if ((nameRegex.test(value), typeof value)) {
+        if (nameRegex.test(value)) {
           // valid regex tested value
           validValue = true;
         } else {
@@ -57,31 +55,35 @@ export default function SignUpForm() {
       // if value is null
       validValue = false;
     }
-    setValidFormStep(true);
 
-    console.log(validValue);
+    // check if any fields have hasError -> true, disable next page option
+    if (
+      Object.keys(formData).filter((formItem) => formData[formItem].hasError)
+        .length > 0
+    )
+      setValidFormStep(false);
+    else setValidFormStep(true);
 
-    // if (validValue) {
-    //   setFormData({
-    //     ...formData,
-    //     [name]: {
-    //       ...formData[name],
-    //       value: value,
-    //     },
-    //   });
-    // }
     setFormData({
       ...formData,
       [name]: {
-        ...formData[name],
+        hasError: !validValue,
         value: value,
       },
     });
   };
 
-  useEffect(() => {
+  const submitFormData = () => {
+    // console values
+    setFormData({
+      ...formData,
+      workspaceURL: {
+        value: 'www.eden.com/' + formData.workspaceURL.value,
+        hasError: false,
+      },
+    });
     console.log(formData);
-  }, [formData]);
+  };
 
   const formStepArray = [
     {
@@ -114,7 +116,10 @@ export default function SignUpForm() {
         />
       ),
     },
-    { title: '4', component: <Step4 formData={formData} /> },
+    {
+      title: '4',
+      component: <Step4 submitFormData={submitFormData} />,
+    },
   ];
 
   return (

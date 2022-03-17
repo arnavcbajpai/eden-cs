@@ -3,10 +3,11 @@ import Header from 'components/Header/Header';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
 import myselfLogo from 'assets/myselflogo.svg';
+import myselfLogoColor from 'assets/myselflogoColor.svg';
 import teamLogo from 'assets/teamlogo.svg';
+import teamLogoColor from 'assets/teamlogoColor.svg';
 
 export default function Step3({ formData, nextStep, setFormData }) {
-  console.log(formData.useMode);
   return (
     <div>
       <Header
@@ -18,12 +19,14 @@ export default function Step3({ formData, nextStep, setFormData }) {
           onClick={() =>
             setFormData({
               ...formData,
-              useMode: { value: 'single', hasError: false },
+              useMode: { hasError: false, value: 'single' },
             })
           }
           name="single"
           isActive={formData.useMode.value === 'single'}
-          icon={myselfLogo}
+          icon={
+            formData.useMode.value === 'single' ? myselfLogoColor : myselfLogo
+          }
           alt="logo"
           heading="For myself"
           description="Write better. Think more clearly. Stay organized."
@@ -32,12 +35,12 @@ export default function Step3({ formData, nextStep, setFormData }) {
           onClick={() =>
             setFormData({
               ...formData,
-              useMode: { value: 'team', hasError: false },
+              useMode: { hasError: false, value: 'team' },
             })
           }
           name="team"
           isActive={formData.useMode.value === 'team'}
-          icon={teamLogo}
+          icon={formData.useMode.value === 'team' ? teamLogoColor : teamLogo}
           alt="logo"
           heading="With my team"
           description="Wikis, docs, tasks & project, all in one place."
