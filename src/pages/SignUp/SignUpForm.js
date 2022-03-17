@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Steps, { Step } from 'components/Steps/Steps';
 import Step1 from 'pages/SignUp/Step1/Step1';
 import Step2 from 'pages/SignUp/Step2/Step2';

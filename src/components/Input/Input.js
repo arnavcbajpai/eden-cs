@@ -48,6 +48,5 @@ Input.propTypes = {
   placehoder: PropTypes.string,
   value: PropTypes.string,
   className: PropTypes.string,
-  value: PropTypes.string,
   error: PropTypes.bool,
 };
